@@ -8,7 +8,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #fff1f5, #f0f9ff);
+    background: linear-gradient(135deg, #fff1f5, #eef7ff);
     color: #333;
 }
 
@@ -28,6 +28,34 @@ header h1 {
     color: #ff6f91;
 }
 
+/* HERO IMAGE */
+.hero {
+    height: 55vh;
+    background: url('https://images.unsplash.com/photo-1612810436541-336d8f0c5b8b?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.35);
+}
+
+.hero h2 {
+    position: relative;
+    font-size: 42px;
+    padding: 15px 25px;
+    border-radius: 12px;
+}
+
 /* CONTROLS */
 .controls {
     padding: 20px;
@@ -41,6 +69,7 @@ select, input {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #ddd;
+    outline: none;
 }
 
 button {
@@ -56,9 +85,9 @@ button:hover {
     background: #ff4d7d;
 }
 
-/* SECTION */
+/* SECTIONS */
 section {
-    padding: 20px;
+    padding: 30px;
     text-align: center;
 }
 
@@ -83,13 +112,15 @@ section {
     transform: translateY(-5px);
 }
 
+/* TAGS */
 .tag {
     font-size: 12px;
     padding: 3px 8px;
-    background: #e0f7ff;
+    background: #ffe3ec;
     border-radius: 20px;
     display: inline-block;
     margin-top: 5px;
+    margin-right: 5px;
 }
 
 /* PROGRESS */
@@ -104,7 +135,7 @@ section {
 
 .bar {
     height: 100%;
-    width: 40%;
+    width: 60%;
     background: linear-gradient(90deg, #ff6f91, #ffb3c6);
 }
 </style>
@@ -114,13 +145,18 @@ section {
 
 <header>
 <h1>GlowSkin 🌸</h1>
-<p>Personal Skincare Planner</p>
+<p>Skincare Planner</p>
 </header>
+
+<!-- HERO -->
+<div class="hero">
+<h2>Glow Naturally with the Right Skincare ✨</h2>
+</div>
 
 <!-- CONTROLS -->
 <div class="controls">
 
-<select id="skinType">
+<select>
 <option>Skin Type</option>
 <option>Oily</option>
 <option>Dry</option>
@@ -128,86 +164,69 @@ section {
 <option>Sensitive</option>
 </select>
 
-<input type="text" id="search" placeholder="Search products...">
+<input type="text" placeholder="Search products...">
 
-<button onclick="filterProducts()">Search</button>
+<button>Search</button>
 </div>
 
 <!-- CONCERNS -->
 <section>
 <h2>Skin Concerns</h2>
-
 <label><input type="checkbox"> Acne</label>
 <label><input type="checkbox"> Dark Spots</label>
 <label><input type="checkbox"> Aging</label>
 <label><input type="checkbox"> Redness</label>
 </section>
 
-<!-- ROUTINE -->
-<section>
-<h2>Morning Routine ☀️</h2>
-<p>Cleanser → Serum → Moisturizer → Sunscreen</p>
-
-<h2>Night Routine 🌙</h2>
-<p>Cleanser → Treatment → Moisturizer</p>
-</section>
-
 <!-- PRODUCTS -->
 <section>
-<h2>Products</h2>
+<h2>Recommended Products</h2>
 
-<div class="container" id="productList">
+<div class="container">
 
 <div class="card">
-<h3>Face Cleanser</h3>
-<p>Gentle cleansing foam</p>
-<span class="tag">Oily Skin</span>
+<h3>Gentle Cleanser</h3>
+<p>Removes dirt without drying skin</p>
+<span class="tag">Oily</span>
 <span class="tag">Acne</span>
 </div>
 
 <div class="card">
-<h3>Hydrating Serum</h3>
-<p>Boosts skin glow</p>
-<span class="tag">Dry Skin</span>
+<h3>Vitamin C Serum</h3>
+<p>Brightens skin & reduces spots</p>
 <span class="tag">Glow</span>
+<span class="tag">Dark Spots</span>
 </div>
 
 <div class="card">
-<h3>Moisturizer</h3>
-<p>Deep hydration</p>
+<h3>Hydrating Moisturizer</h3>
+<p>Keeps skin soft all day</p>
+<span class="tag">Dry</span>
+<span class="tag">Sensitive</span>
+</div>
+
+<div class="card">
+<h3>Sunscreen SPF 50</h3>
+<p>Protects from UV damage</p>
 <span class="tag">All Skin</span>
+<span class="tag">Protection</span>
 </div>
 
 </div>
 </section>
 
-<!-- PROGRESS -->
+<!-- ROUTINE -->
 <section>
-<h2>Weekly Skin Progress</h2>
+<h2>Routine Tracker</h2>
+<p>Morning ☀️ Cleanser → Serum → SPF</p>
+<p>Night 🌙 Cleanser → Treatment → Moisturizer</p>
 
 <div class="progress">
 <div class="bar"></div>
 </div>
 
-<p>Hydration Level Improving ✨</p>
+<p>Weekly Skin Improvement</p>
 </section>
-
-<!-- JS -->
-<script>
-function filterProducts() {
-    let input = document.getElementById("search").value.toLowerCase();
-    let cards = document.querySelectorAll(".card");
-
-    cards.forEach(card => {
-        let text = card.innerText.toLowerCase();
-        if (text.includes(input)) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-    });
-}
-</script>
 
 </body>
 </html>
