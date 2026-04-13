@@ -1,152 +1,213 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>GlowSkin</title>
+<meta charset="UTF-8">
+<title>GlowSkin - Skincare Planner</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            scroll-behavior: smooth;
-            background: #fdf6f0;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #fff1f5, #f0f9ff);
+    color: #333;
+}
 
-        header {
-            background: #fff;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-        }
+/* HEADER */
+header {
+    background: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
 
-        header h1 {
-            color: #d48c8c;
-        }
+header h1 {
+    color: #ff6f91;
+}
 
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
+/* CONTROLS */
+.controls {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
 
-        nav a:hover {
-            color: #d48c8c;
-        }
+select, input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
 
-        .hero {
-            height: 90vh;
-            background: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9') no-repeat center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
+button {
+    padding: 10px 15px;
+    border: none;
+    background: #ff6f91;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
-        .hero h2 {
-            font-size: 50px;
-            background: rgba(0,0,0,0.4);
-            padding: 20px;
-            border-radius: 15px;
-        }
+button:hover {
+    background: #ff4d7d;
+}
 
-        .section {
-            padding: 50px;
-            text-align: center;
-        }
+/* SECTION */
+section {
+    padding: 20px;
+    text-align: center;
+}
 
-        .cards {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+/* CARDS */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
 
-        .card {
-            background: white;
-            width: 250px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: 0.3s;
-        }
+.card {
+    width: 230px;
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
 
-        .card:hover {
-            transform: translateY(-10px);
-        }
+.card:hover {
+    transform: translateY(-5px);
+}
 
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+.tag {
+    font-size: 12px;
+    padding: 3px 8px;
+    background: #e0f7ff;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 5px;
+}
 
-        .card h3 {
-            padding: 10px;
-        }
+/* PROGRESS */
+.progress {
+    width: 60%;
+    height: 10px;
+    background: #eee;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
 
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-    </style>
-
+.bar {
+    height: 100%;
+    width: 40%;
+    background: linear-gradient(90deg, #ff6f91, #ffb3c6);
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>GlowSkin 🌸</h1>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#products">Products</a>
-        <a href="#tips">Tips</a>
-    </nav>
+<h1>GlowSkin 🌸</h1>
+<p>Personal Skincare Planner</p>
 </header>
 
-<div class="hero">
-    <h2>Natural Beauty Starts Here ✨</h2>
+<!-- CONTROLS -->
+<div class="controls">
+
+<select id="skinType">
+<option>Skin Type</option>
+<option>Oily</option>
+<option>Dry</option>
+<option>Combination</option>
+<option>Sensitive</option>
+</select>
+
+<input type="text" id="search" placeholder="Search products...">
+
+<button onclick="filterProducts()">Search</button>
 </div>
 
-<section class="section" id="products">
-    <h2>Our Skincare Essentials</h2>
+<!-- CONCERNS -->
+<section>
+<h2>Skin Concerns</h2>
 
-    <div class="cards">
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519">
-            <h3>Face Cleanser</h3>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd">
-            <h3>Moisturizer</h3>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273">
-            <h3>Serum Glow</h3>
-        </div>
-
-    </div>
+<label><input type="checkbox"> Acne</label>
+<label><input type="checkbox"> Dark Spots</label>
+<label><input type="checkbox"> Aging</label>
+<label><input type="checkbox"> Redness</label>
 </section>
 
-<section class="section" id="tips">
-    <h2>Skincare Tips 💡</h2>
-    <p>💧 Drink water daily</p>
-    <p>☀️ Always use sunscreen</p>
-    <p>✨ Follow a night routine</p>
+<!-- ROUTINE -->
+<section>
+<h2>Morning Routine ☀️</h2>
+<p>Cleanser → Serum → Moisturizer → Sunscreen</p>
+
+<h2>Night Routine 🌙</h2>
+<p>Cleanser → Treatment → Moisturizer</p>
 </section>
 
-<footer>
-    <p>© 2026 GlowSkin | Follow us on Instagram 💕</p>
-</footer>
+<!-- PRODUCTS -->
+<section>
+<h2>Products</h2>
+
+<div class="container" id="productList">
+
+<div class="card">
+<h3>Face Cleanser</h3>
+<p>Gentle cleansing foam</p>
+<span class="tag">Oily Skin</span>
+<span class="tag">Acne</span>
+</div>
+
+<div class="card">
+<h3>Hydrating Serum</h3>
+<p>Boosts skin glow</p>
+<span class="tag">Dry Skin</span>
+<span class="tag">Glow</span>
+</div>
+
+<div class="card">
+<h3>Moisturizer</h3>
+<p>Deep hydration</p>
+<span class="tag">All Skin</span>
+</div>
+
+</div>
+</section>
+
+<!-- PROGRESS -->
+<section>
+<h2>Weekly Skin Progress</h2>
+
+<div class="progress">
+<div class="bar"></div>
+</div>
+
+<p>Hydration Level Improving ✨</p>
+</section>
+
+<!-- JS -->
+<script>
+function filterProducts() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        if (text.includes(input)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+</script>
 
 </body>
 </html>
