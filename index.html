@@ -2,231 +2,231 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>GlowSkin - Skincare Planner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlowSkin AI - Skincare Dashboard</title>
 
 <style>
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #fff1f5, #eef7ff);
-    color: #333;
-}
-
-/* HEADER */
-header {
-    background: white;
-    padding: 15px 25px;
+    font-family: "Segoe UI", sans-serif;
+    background: #0b0f1a;
+    color: white;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-header h1 {
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    color: #ff6f91;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    margin: 15px 0;
+    transition: 0.2s;
+}
+
+.sidebar a:hover {
     color: #ff6f91;
 }
 
-/* HERO IMAGE */
-.hero {
-    height: 55vh;
-    background: url('https://images.unsplash.com/photo-1612810436541-336d8f0c5b8b?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    position: relative;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    top:0;left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.35);
-}
-
-.hero h2 {
-    position: relative;
-    font-size: 42px;
-    padding: 15px 25px;
-    border-radius: 12px;
-}
-
-/* CONTROLS */
-.controls {
+/* MAIN */
+.main {
+    margin-left: 240px;
     padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+    width: 100%;
 }
 
-select, input {
+/* TOP BAR */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.search {
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid #ddd;
-    outline: none;
-}
-
-button {
-    padding: 10px 15px;
     border: none;
-    background: #ff6f91;
-    color: white;
+    width: 250px;
+}
+
+/* FILTERS */
+.filters {
+    margin: 15px 0;
+    display: flex;
+    gap: 10px;
+}
+
+select {
+    padding: 10px;
     border-radius: 10px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #ff4d7d;
-}
-
-/* SECTIONS */
-section {
-    padding: 30px;
-    text-align: center;
+    border: none;
 }
 
 /* CARDS */
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 15px;
+    margin-top: 20px;
 }
 
 .card {
-    width: 230px;
-    background: white;
-    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
     padding: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border-radius: 15px;
     transition: 0.3s;
 }
 
 .card:hover {
     transform: translateY(-5px);
+    border-color: #ff6f91;
 }
 
-/* TAGS */
 .tag {
     font-size: 12px;
+    background: rgba(255,111,145,0.2);
     padding: 3px 8px;
-    background: #ffe3ec;
     border-radius: 20px;
+    margin-right: 5px;
     display: inline-block;
     margin-top: 5px;
-    margin-right: 5px;
 }
 
-/* PROGRESS */
-.progress {
-    width: 60%;
-    height: 10px;
-    background: #eee;
-    margin: auto;
+/* ROUTINE PANEL */
+.panel {
+    margin-top: 30px;
+    padding: 15px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 15px;
+}
+
+.step {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.05);
     border-radius: 10px;
-    overflow: hidden;
+    cursor: pointer;
 }
 
-.bar {
-    height: 100%;
-    width: 60%;
-    background: linear-gradient(90deg, #ff6f91, #ffb3c6);
+.step.done {
+    background: #2ecc71;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>GlowSkin 🌸</h1>
-<p>Skincare Planner</p>
-</header>
-
-<!-- HERO -->
-<div class="hero">
-<h2>Glow Naturally with the Right Skincare ✨</h2>
+<!-- SIDEBAR -->
+<div class="sidebar">
+<h2>GlowSkin AI</h2>
+<a href="#">Dashboard</a>
+<a href="#">Products</a>
+<a href="#">Routine</a>
+<a href="#">Favorites</a>
+<a href="#">Settings</a>
 </div>
 
-<!-- CONTROLS -->
-<div class="controls">
+<!-- MAIN -->
+<div class="main">
 
-<select>
-<option>Skin Type</option>
-<option>Oily</option>
-<option>Dry</option>
-<option>Combination</option>
-<option>Sensitive</option>
+<div class="topbar">
+<h1>Skincare Dashboard</h1>
+<input class="search" id="search" placeholder="Search products..." oninput="filter()">
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+<select id="skin" onchange="filter()">
+<option value="all">Skin Type</option>
+<option value="oily">Oily</option>
+<option value="dry">Dry</option>
+<option value="sensitive">Sensitive</option>
+<option value="all">All</option>
 </select>
-
-<input type="text" placeholder="Search products...">
-
-<button>Search</button>
 </div>
-
-<!-- CONCERNS -->
-<section>
-<h2>Skin Concerns</h2>
-<label><input type="checkbox"> Acne</label>
-<label><input type="checkbox"> Dark Spots</label>
-<label><input type="checkbox"> Aging</label>
-<label><input type="checkbox"> Redness</label>
-</section>
 
 <!-- PRODUCTS -->
-<section>
-<h2>Recommended Products</h2>
-
-<div class="container">
-
-<div class="card">
-<h3>Gentle Cleanser</h3>
-<p>Removes dirt without drying skin</p>
-<span class="tag">Oily</span>
-<span class="tag">Acne</span>
-</div>
-
-<div class="card">
-<h3>Vitamin C Serum</h3>
-<p>Brightens skin & reduces spots</p>
-<span class="tag">Glow</span>
-<span class="tag">Dark Spots</span>
-</div>
-
-<div class="card">
-<h3>Hydrating Moisturizer</h3>
-<p>Keeps skin soft all day</p>
-<span class="tag">Dry</span>
-<span class="tag">Sensitive</span>
-</div>
-
-<div class="card">
-<h3>Sunscreen SPF 50</h3>
-<p>Protects from UV damage</p>
-<span class="tag">All Skin</span>
-<span class="tag">Protection</span>
-</div>
-
-</div>
-</section>
+<div class="grid" id="grid"></div>
 
 <!-- ROUTINE -->
-<section>
-<h2>Routine Tracker</h2>
-<p>Morning ☀️ Cleanser → Serum → SPF</p>
-<p>Night 🌙 Cleanser → Treatment → Moisturizer</p>
+<div class="panel">
+<h2>Your Routine</h2>
+<p class="sub">Click to complete steps</p>
 
-<div class="progress">
-<div class="bar"></div>
+<div>
+<span class="step" onclick="toggle(this)">Cleanser</span>
+<span class="step" onclick="toggle(this)">Serum</span>
+<span class="step" onclick="toggle(this)">Moisturizer</span>
+<span class="step" onclick="toggle(this)">Sunscreen</span>
 </div>
 
-<p>Weekly Skin Improvement</p>
-</section>
+</div>
+
+</div>
+
+<script>
+
+const data = [
+{name:"Gentle Cleanser", type:"oily", tag:["Oil Control"]},
+{name:"Hydrating Moisturizer", type:"dry", tag:["Hydration"]},
+{name:"Vitamin C Serum", type:"all", tag:["Glow"]},
+{name:"SPF 50 Sunscreen", type:"all", tag:["Protection"]},
+{name:"Calming Gel", type:"sensitive", tag:["Redness Relief"]}
+];
+
+function render(list){
+    const grid = document.getElementById("grid");
+    grid.innerHTML = "";
+
+    list.forEach(p => {
+        const div = document.createElement("div");
+        div.className = "card";
+
+        div.innerHTML = `
+            <h3>${p.name}</h3>
+            <p>Recommended skincare product</p>
+            ${p.tag.map(t => `<span class="tag">${t}</span>`).join("")}
+        `;
+
+        grid.appendChild(div);
+    });
+}
+
+function filter(){
+    let skin = document.getElementById("skin").value;
+    let search = document.getElementById("search").value.toLowerCase();
+
+    let filtered = data.filter(p =>
+        (skin === "all" || p.type === skin) &&
+        p.name.toLowerCase().includes(search)
+    );
+
+    render(filtered);
+}
+
+function toggle(el){
+    el.classList.toggle("done");
+}
+
+render(data);
+
+</script>
 
 </body>
 </html>
